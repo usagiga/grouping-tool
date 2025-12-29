@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>グループ分けアプリ</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; background-color: #f0f4f8; }
+        .container { max-width: 400px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        input { width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+        button { background-color: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 16px; cursor: pointer; margin-top: 15px; width: 100%; }
+        button:hover { background-color: #0056b3; }
+        #result { margin-top: 20px; text-align: left; }
+        .group-box { background: #e9ecef; padding: 10px; margin-bottom: 10px; border-radius: 6px; }
+        h3 { margin-top: 0; color: #333; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>👥 4人をグループ分け</h2>
+    <p>名前を入力してください</p>
+    <input type="text" id="p1" value="Aさん">
+    <input type="text" id="p2" value="Bさん">
+    <input type="text" id="p3" value="Cさん">
+    <input type="text" id="p4" value="Dさん">
+
+    <button onclick="makeGroups()">グループ分けする！</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function makeGroups() {
+        // 入力された名前を取得
+        const names = [
+            document.getElementById('p1').value,
+            document.getElementById('p2').value,
+            document.getElementById('p3').value,
+            document.getElementById('p4').value
+        ];
+
+        // シャッフル（ランダムに並び替え）
+        for (let i = names.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [names[i], names[j]] = [names[j], names[i]];
+        }
+
+        // 分け方をランダムに決定（0なら2vs2、1なら3vs1）
+        // ※完全に運任せにする場合
+        const splitPattern = Math.random() < 0.5 ? 2 : 3; 
+
+        const group1 = names.slice(0, splitPattern);
+        const group2 = names.slice(splitPattern);
+
+        // 結果を表示
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `
+            <div class="group-box">
+                <h3>グループ1 (${group1.length}人)</h3>
+                ${group1.join(', ')}
+            </div>
+            <div class="group-box">
+                <h3>グループ2 (${group2.length}人)</h3>
+                ${group2.join(', ')}
+            </div>
+        `;
+    }
+</script>
+
+</body>
+</html>
