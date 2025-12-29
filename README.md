@@ -1,9 +1,11 @@
 # grouping-tool
 Grouping Web tool For Eldenring Nightrein.
+
 https://usagiga.github.io/grouping-tool/
 
 It devides 4 members into 2 groups(3-1, 2-2).
 
+This tool is positioned as Just PoC of [usagiga/discord-grouping-bot](https://github.com/usagiga/discord-grouping-bot).
 Created by Gemini 3.5 Pro.
 Hosted on GitHub Pages.
 
