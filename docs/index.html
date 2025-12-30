@@ -139,7 +139,7 @@
 
     function copyResult() {
         const resultDiv = document.getElementById('result');
-        let clipText = resultDiv.innerText.replace("\n\n", "\n"); // cutoff redundant breakline
+        let clipText = resultDiv.innerText.replaceAll("\n\n", "\n"); // cutoff redundant breakline
 
         navigator.clipboard.writeText(clipText).then(() => {
             const btn = document.getElementById('copyBtn');
