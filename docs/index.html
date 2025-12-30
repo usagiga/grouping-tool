@@ -104,7 +104,9 @@
         }
 
         // 分け方を決定
-        const splitPattern = Math.random() < 0.5 ? 2 : 3;
+        // 0.0-0.7: 2-2
+        // 0.7-1.0: 3-1
+        const splitPattern = Math.random() < 0.7 ? 2 : 3;
         const group1 = names.slice(0, splitPattern);
         const group2 = names.slice(splitPattern);
 
