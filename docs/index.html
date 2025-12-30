@@ -111,11 +111,11 @@
         // 結果のHTML生成
         const resultHTML = `
             <div class="group-box">
-                <h3>🟦 グループ1 (${group1.length}人)</h3>
+                <h3>🟦 グループ1</h3>
                 <p>${group1.join(', ')}</p>
             </div>
             <div class="group-box">
-                <h3>🟩 グループ2 (${group2.length}人)</h3>
+                <h3>🟩 グループ2</h3>
                 <p>${group2.join(', ')}</p>
             </div>
         `;
@@ -137,7 +137,7 @@
 
     function copyResult() {
         const resultDiv = document.getElementById('result');
-        let clipText = "【グループ分け結果】\n\n" + resultDiv.innerText;
+        let clipText = resultDiv.innerText.replace("\n\n", "\n"); // cutoff redundant breakline
 
         navigator.clipboard.writeText(clipText).then(() => {
             const btn = document.getElementById('copyBtn');
